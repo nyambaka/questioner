@@ -104,5 +104,22 @@
 }
 
 input[type="checkbox"]:checked ~.options{
-            display: block;
+	display: block;
+}
+
+.login-form{
+	width: 400px;
+	margin-left: calc(50% - 400px/2);
+}
+
+.login-form label{
+	width: 100%;
+}
+.login-form input{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.error{
+	opacity: 0;
 }
