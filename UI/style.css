@@ -89,8 +89,8 @@
 .logout{
 	width: 40%;
 	float: left;
-
 }
+
 
 .options a{
 	width: 100%;
@@ -100,18 +100,22 @@
 	border-radius: 3px;
 }
 
+
 input[type="checkbox"]:checked ~.options{
 	display: block;
 }
+
 
 .registration-form{
 	width: 400px;
 	margin-left: calc(50% - 400px/2);
 }
 
+
 .registration-form label{
 	width: 100%;
 }
+
 .registration-form input{
 	width: 100%;
 	margin-top: 10px;
@@ -141,6 +145,7 @@ input[type="checkbox"]:checked ~.options{
 	padding: 4px;
 }
 
+
 .posting-form{
 	width: 400px;
 	margin-left: calc(50% - 400px/2);
@@ -150,11 +155,133 @@ input[type="checkbox"]:checked ~.options{
 	width: 100%;
 }
 
+
 .posting-form textarea{
 	width: 100%;
 	height: 50px;
 }
+
 .posting-form input{
 	width: 100%;
 	margin-top: 10px;
+}
+.profile-header{
+	color: white;
+	background-color: green;
+	margin-right: 20px;
+	border-radius: 3px;
+	height: 30px;
+}
+.hidden{
+	display: none;
+}
+
+.visible{
+	display:block;
+}
+
+#question-header{
+	padding-top: 5px;
+	width: 15%;
+	float: left;
+	text-align: center;
+}
+
+#topic{
+	width: 85%;
+	float: left;
+	text-align: center;
+	color: black;
+	background-color: white;
+	height: 100%;
+}
+
+.meetup{
+	width: 540px;
+}
+
+.comment{
+	width: 30%;
+	float: left;
+}
+
+#comment-header{
+	margin-right: 5px;
+	padding-top: 5px;
+	text-align: center;
+}
+.meetup-control{
+	width: 100%;
+}
+.meetup-control div{
+	width: 30%;
+	float: left;
+}
+
+.comment-form textarea{
+	width: 100%;
+}
+
+#comment-submit{
+	float: right;
+}
+
+.comment-form{
+	display: none;
+}
+
+
+.meetup-label{
+	list-style: none;
+	margin-bottom: 10px;
+	font-size: 1.5em;
+
+
+}
+.meetup-label:hover{
+	color: green;
+	cursor: pointer;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.ask-question-form{
+	clear: both;
+	display: none;
+}
+
+.pen-image{
+	width: 150px;
+	height: 150px;
+}
+.meetup-label-text{
+	width:250px;
+	float: left;
+}
+
+.pen-image{
+ width:20px;
+	height: 20px;
+	float: left;
+}
+
+.pen-image img{
+	width: 100%;
+}
+.meetup{
+	clear: both;
+	margin-bottom: 15px;
+	display: none;
+}
+
+input[type="checkbox"]:checked ~.comment-form{
+	display: block;
+}
+
+input[type="checkbox"]:checked ~.meetup{
+	display: block;
+}
+
+input[type="checkbox"]:checked ~.ask-question-form{
+	display: block;
 }
