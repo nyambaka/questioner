@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Questioner</title>
+    <script src="js.js"></script>
+</head>
+<link href="style.css" rel="stylesheet" type="text/css">
+<div class="title">
+    Questioner
+</div>
+<div class="top-nav">
+    <div class="question-label">
+        Question Label
+    </div>
+    <div class="user">
+        <div class="user-with-control">
+            <div class="username-label">
+                Username
+            </div>
+            <div class="user-control" title="Login /Logout">
+                <label for="menu-option"><img src="user.png"></label>
+            </div>
+        </div>
+    </div>
+    <input id="menu-option" type="checkbox">
+    <div class="options">
+        <div class="logout">
+            <a href="logOut">LogIn</a>
+        </div>
+        <div class="login">
+            <a href="Login">Register </a>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!--main section of the application starts-->
+<div class="section">
+    <div class="profile-header">
+        <div  id="question-header" class="hidden">
+            <label onclick="tagglenavigation()">MEETUP </label>
+        </div>
+        <div id="topic">
+            Question
+        </div>
+        <div  id="comment-header">
+            <label for="add">ADD MEETUP</label>
+        </div>
+    </div>
+    <div class="Meetup">
+        <li id="8" class="meetup-label">
+            <label class="meetup-label-text">School committee</label>
+            <label  class="pen-image">
+               <img src="delete.png">
+            </label>
+        </li>
+        <input type="checkbox" id="add"  class="hidden">
+        <div class="meetup-form">
+            <form>
+                <label> Label</label>
+                <input type="text" name="group-label">
+                <input type="text" name="group-label-error" readonly="readonly" class="error">
+                <label> Members </label>
+                <select multiple>
+                    <option>
+                        Nelson king
+                    </option>
+                    <option>
+                        youth
+                    </option>
+                    <option>
+                        blind optician
+                    </option>
+                </select>
+                <input type="text" name="group-members-error" readonly="readonly" class="error">
+                <input type="submit" value="ADD">
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--footer contents -->
+<div class="right-nav">
+    <div class="team-members-label">
+        Meet ups
+    </div>
+    <li>
+        JavaScript Guru
+    </li>
+    <li>
+        Android Beginners
+    </li>
+    <li>
+        IOS intermediate
+    </li>
+</div>
+
+
+<script src="js.js" type="text/ecmascript-6"></script>
