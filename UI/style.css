@@ -1,0 +1,108 @@
+.title{
+	color: white;
+	background-color: green;
+	text-align: center;
+	padding-top: 10px;
+	width: 100%;
+	padding-bottom: 10px;
+	border-radius: 3px;
+}
+
+.top-nav{
+	color:green;
+	background-color: white;
+	width: 100%;
+	height: auto;
+}
+
+.top-nav .question-label{
+	margin-top: 3px;
+	padding: 5px 3px 5px;
+	border: 1px solid black;
+	border-radius: 3px;
+	float: left;
+	max-width: 200px;
+	height: 30px;
+}
+
+
+.user-with-control{
+	width: 100%;
+	height: 30px;
+}
+
+
+.user{
+	margin-top: 3px;
+	width: 200px;
+	float: right;
+    border-radius: 3px;
+	border: 1px solid black;
+
+}
+
+
+.user-control{
+	width: 20%;
+	height: 100%;
+	float: left;
+}
+
+
+.user-control img{
+	width: 100%;
+	height: 100%;
+}
+
+
+#menu-option{
+	display: none;
+}
+
+
+.username-label{
+	padding-top: 10px;
+	width: 80%;
+	float: left;
+	height: 100%;
+}
+
+
+.section{
+	clear: both;
+}
+
+
+.options{
+	margin-top: 8px;
+	width: 200px;
+	display: none;
+	float: right;
+	clear: both;
+
+}
+
+
+
+.login{
+	float: left;
+	width: 40%;
+
+}
+.logout{
+	width: 40%;
+	float: left;
+
+}
+
+.options a{
+	width: 100%;
+	text-decoration: none;
+	border: 1px solid black;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+input[type="checkbox"]:checked ~.options{
+            display: block;
+}
