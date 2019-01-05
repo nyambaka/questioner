@@ -133,9 +133,28 @@ input[type="checkbox"]:checked ~.options{
 	width: 20%;
 }
 
+
 .right-nav .team-members-label{
 	color: white;
 	background-color: green;
 	border-radius: 3px;
 	padding: 4px;
+}
+
+.posting-form{
+	width: 400px;
+	margin-left: calc(50% - 400px/2);
+}
+
+.posting-form label{
+	width: 100%;
+}
+
+.posting-form textarea{
+	width: 100%;
+	height: 50px;
+}
+.posting-form input{
+	width: 100%;
+	margin-top: 10px;
 }
