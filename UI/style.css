@@ -79,10 +79,7 @@
 	display: none;
 	float: right;
 	clear: both;
-
 }
-
-
 
 .login{
 	float: left;
@@ -107,19 +104,38 @@ input[type="checkbox"]:checked ~.options{
 	display: block;
 }
 
-.login-form{
+.registration-form{
 	width: 400px;
 	margin-left: calc(50% - 400px/2);
 }
 
-.login-form label{
+.registration-form label{
 	width: 100%;
 }
-.login-form input{
+.registration-form input{
 	width: 100%;
 	margin-top: 10px;
 }
 
 .error{
 	opacity: 0;
+}
+
+.section {
+	margin-top: 10px;
+	clear: both;
+	width: 80%;
+	float: left;
+}
+.right-nav{
+	margin-top: 10px;
+	float: left;
+	width: 20%;
+}
+
+.right-nav .team-members-label{
+	color: white;
+	background-color: green;
+	border-radius: 3px;
+	padding: 4px;
 }
