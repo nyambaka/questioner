@@ -238,11 +238,9 @@ input[type="checkbox"]:checked ~.options{
 
 
 }
+
 .meetup-label:hover{
-	color: green;
-	cursor: pointer;
-	font-size: 1.5em;
-	font-weight: bold;
+
 }
 
 .ask-question-form{
@@ -258,21 +256,30 @@ input[type="checkbox"]:checked ~.options{
 	width:250px;
 	float: left;
 }
+.meetup-label-text:hover{
+	color: green;
+	cursor: pointer;
+	font-weight: bold;
+}
 
 .pen-image{
  width:20px;
 	height: 20px;
 	float: left;
 }
-
+.no-background{
+	background-color: white;
+}
 .pen-image img{
 	width: 100%;
 }
+
 .meetup{
 	clear: both;
 	margin-bottom: 15px;
 	display: none;
 }
+
 
 input[type="checkbox"]:checked ~.comment-form{
 	display: block;
@@ -284,4 +291,21 @@ input[type="checkbox"]:checked ~.meetup{
 
 input[type="checkbox"]:checked ~.ask-question-form{
 	display: block;
+}
+
+.meetup-form{
+	display: none;
+}
+input[type="checkbox"]:checked ~.meetup-form{
+	display: block;
+}
+
+.meetup-form{
+	width: 400px;
+	margin-left: calc(50% - 400px/2);
+}
+
+.meetup-form label,input,select{
+	width: 100%;
+
 }
