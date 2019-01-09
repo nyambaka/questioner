@@ -11,14 +11,14 @@ class Question:
         return isinstance(self.data[key], type_claim)
 
     def get_user_id(self):
-        if not self.is_set("userId"):
+        if not self.is_set("userid"):
             return 201
-        return self.data['userId']
+        return self.data['userid']
 
     def set_user_id(self, new_id):
         if not isinstance(new_id, int):
             return 202
-        self.data['userId'] = new_id
+        self.data['userid'] = new_id
         return self
 
     def get_id(self):
@@ -100,9 +100,9 @@ class Question:
     def self_validate(self):
         if not isinstance(self.data, dict):
             return 214
-        if not self.is_set("userId"):
+        if not self.is_set("userid"):
             return 201
-        if not self.type_check("userId", int):
+        if not self.type_check("userid", int):
             return 202
         if not self.is_set("id"):
             return 203
@@ -127,7 +127,7 @@ class Question:
         return 0
 
 # samplequestion={
-# 	"userId":1,
+# 	"userid":1,
 # 	"id":2,
 # 	"vote":34,
 # 	"down":78,
