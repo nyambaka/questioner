@@ -69,10 +69,21 @@ def upvote(question_id):
             if q["id"] == int(question_id):
                 q["vote"] = q["vote"] +1
                 return "done"
-            return jsonify({
-                "error ":"no question found with that id"
-            })
+    return jsonify({
+        "error ": "no question found with that id"
+    })
 
+
+@app.route("/question/<question_id>/downvote", methods=["patch"])
+def down_vote(question_id):
+    for m in meet_ups:
+        for q in m["question"]:
+            if q["id"] == int(question_id):
+                q["vote"] = q["vote"] - 1
+                return "done"
+    return jsonify({
+        "error ": "no question found with that id"
+    })
 
 
 @app.route("/look")
