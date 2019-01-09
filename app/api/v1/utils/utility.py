@@ -23,10 +23,11 @@ def question_add_breath(question, id_dictionary):
     question["id"] = id_generator(id_dictionary, "question")
     return question
 
-def reflect_meetup(meet_up,):
+
+def reflect_meetup(meet_up):
+    copy = meet_up.copy()
     if not isinstance(meet_up, dict):
         return 501
-    meetup_feedback=meet_up
-    del meetup_feedback["id"]
+    meetup_feedback=copy
     del meetup_feedback["question"]
     return meetup_feedback
