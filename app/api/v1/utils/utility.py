@@ -24,6 +24,17 @@ def question_add_breath(question, id_dictionary):
     return question
 
 
+def reflect_question(question):
+    copy = question.copy()
+    if not isinstance(question, dict):
+        return 501
+    question_feedback = copy
+    del question_feedback["vote"]
+    del question_feedback["down"]
+    del question_feedback["comment"]
+    return question_feedback
+
+
 def reflect_meetup(meet_up):
     copy = meet_up.copy()
     if not isinstance(meet_up, dict):
