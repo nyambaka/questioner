@@ -67,12 +67,12 @@ def upvote(question_id):
     for m in meet_ups:
         for q in m["question"]:
             if q["id"] == int(question_id):
-                q["vote"] = id_generator(ids, "vote")
-                print(q)
+                q["vote"] = q["vote"] +1
                 return "done"
             return jsonify({
                 "error ":"no question found with that id"
             })
+
 
 
 @app.route("/look")
