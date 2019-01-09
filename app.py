@@ -18,6 +18,7 @@ def hello_world():
 def meetup():
     value = []
     for i in meet_ups:
+
         value.append(reflect_meetup(i))
     return value
 
