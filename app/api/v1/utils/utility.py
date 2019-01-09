@@ -23,6 +23,16 @@ def question_add_breath(question, id_dictionary):
     question["id"] = id_generator(id_dictionary, "question")
     return question
 
+def reflect_question(question):
+    copy = question.copy()
+    if not isinstance(question, dict):
+        return 503
+    question_feedback = copy
+    del question_feedback["vote"]
+    del question_feedback["down"]
+    del question_feedback["comment"]
+    return question_feedback
+
 
 def reflect_meetup(meet_up):
     copy = meet_up.copy()
