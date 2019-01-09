@@ -22,7 +22,6 @@ def meetup():
     return jsonify(responses)
 
 
-
 @app.route("/meetup", methods=["post"])
 def post_meet_up():
     final = meet_up_add_breath(request.get_json(), ids)
@@ -32,6 +31,18 @@ def post_meet_up():
         print(final)
         meet_ups.append(final)
     return jsonify(reflect_meetup(final))
+
+
+@app.route("/meetup/<meet_up_id>" )
+def meet_up_specific(meet_up_id):
+    for i in meet_ups:
+        buffer = MeetUp(i)
+        print(buffer.get_meet_up_id())
+        if buffer.get_meet_up_id() == int(meet_up_id):
+            return jsonify(reflect_meetup(i))
+    return jsonify({
+        "error":"there is not meetup with that specic id"
+    })
 
 
 if __name__ == '__main__':
