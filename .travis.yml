@@ -1,8 +1,16 @@
 language: python
-
 python:
-  -"3.5.2"
+  - "3.5.2"
+
 install:
-  - "pip install pytest"
-  - "pip install -r requirements.txt"
-script: python -m pytest
+  - pip install -r requirements.txt
+
+  - pip install coveralls
+
+  - pip install pytest-cov
+
+script:
+  - python -m pytest --cov
+
+after_success:
+  - coveralls
