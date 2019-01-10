@@ -1,11 +1,11 @@
-from flask import Flask ,request ,jsonify
+from flask import Flask, request, jsonify
 from app.api.v1.controller.meetupclass import MeetUp
 from app.api.v1.controller.questionclass import Question
 from app.api.v1.model.database import *
-from app.api.v1.utils.utility import meet_up_add_breath, question_add_breath ,reflect_meetup,reflect_question, id_generator ,reflect_vote
+from app.api.v1.utils.utility import meet_up_add_breath, question_add_breath, reflect_meetup, reflect_question, \
+    id_generator, reflect_vote
 from app.api.v1.controller.commentclass import Comment
 from app.api.v1.utils.error_file import en_errors
-
 
 app = Flask(__name__)
 
@@ -32,24 +32,24 @@ def post_meet_up():
         meet_ups.append(final)
         return jsonify(reflect_meetup(final))
     return jsonify({
-      "error":en_errors[error]
+        "error": en_errors[error]
     })
 
 
-@app.route("/meetup/<meet_up_id>" )
+@app.route("/meetups/<meet_up_id>", methods=["get"])
 def meet_up_specific(meet_up_id):
     for i in meet_ups:
         buffer = MeetUp(i)
         if buffer.get_meet_up_id() == int(meet_up_id):
             return jsonify(reflect_meetup(i))
     return jsonify({
-        "error":"there is not meetup with that specic id"
+        "error": "there is not meetup with that specic id"
     })
 
 
-@app.route("/question" ,methods=["post"])
+@app.route("/question", methods=["post"])
 def post_question():
-    buffer_value = question_add_breath(request.get_json(),ids)
+    buffer_value = question_add_breath(request.get_json(), ids)
     buffer_class = Question(buffer_value)
     error = buffer_class.self_validate()
     for i in meet_ups:
@@ -60,11 +60,11 @@ def post_question():
             )
     if int(error) != 0:
         return jsonify({
-            "status":622,
-            "error":en_errors[error]
+            "status": 622,
+            "error": en_errors[error]
         })
     return jsonify({
-        "error":en_errors[601]
+        "error": en_errors[601]
     })
 
 
@@ -73,7 +73,7 @@ def upvote(question_id):
     for m in meet_ups:
         for q in m["question"]:
             if q["id"] == int(question_id):
-                q["vote"] = q["vote"] +1
+                q["vote"] = q["vote"] + 1
                 return jsonify({"status": 200, "data": reflect_vote(m, m["question"].index(q))})
     return jsonify({
         "error ": "no question found with that id"
@@ -86,7 +86,7 @@ def down_vote(question_id):
         for q in m["question"]:
             if q["id"] == int(question_id):
                 q["vote"] = q["vote"] - 1
-                return jsonify({"status":200,"data":reflect_vote(m,m["question"].index(q))})
+                return jsonify({"status": 200, "data": reflect_vote(m, m["question"].index(q))})
     return jsonify({
         "error ": "no question found with that id"
     })
