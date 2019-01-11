@@ -1,11 +1,11 @@
 import  unittest
-from app.api.v1 import  app
+from app.api.v1 import  application
 import json
 
 class TestMeetups(unittest.TestCase):
 
     def setUp(self):
-        self.client = app.test_client()
+        self.client = application.test_client()
         self.url_prefix = ""
         self.sample_data ={
             "label":"meetup eleven",
