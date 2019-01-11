@@ -13,7 +13,7 @@ application = Flask(__name__)
 
 @application.route('/', methods=["get"])
 def hello_world():
-    return 'Hello World!'
+    return 'Questioner Api'
 
 
 @application.route("/meetups", methods=["get"])
@@ -113,6 +113,7 @@ def post_rsvp(meetup_id):
 def remember():
     print(meet_ups)
     return "done"
+
 
 
 def create_app():
