@@ -15,7 +15,7 @@ class User:
         return self.data['id']
 
     def set_id(self, new_id):
-        if not isinstance(new_id, str):
+        if not isinstance(new_id, int):
             return 402
         self.data["id"] = new_id
         return self
