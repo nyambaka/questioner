@@ -114,3 +114,6 @@ def remember():
     print(meet_ups)
     return "done"
 
+
+def create_app():
+    return application
