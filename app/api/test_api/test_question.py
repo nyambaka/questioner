@@ -21,7 +21,7 @@ class TestQuestion(unittest.TestCase):
         self.meet_state = json.loads(response.get_data().decode("utf-8"))
 
     def test_fetch_specific_question(self):
-        response = self.client.patch(self.url_prefix + "/question/1", headers={"Content-Type": "application/json"})
+        response = self.client.patch(self.url_prefix + "/question/1/upvote", headers={"Content-Type": "application/json"})
         self.assertEqual(response.status_code, 200, "upvoting should be allowed")
         self.assertNotEqual(json.loads(response.get_data().decode('utf-8')), [],
                             "initial meetup state should be and empty list")

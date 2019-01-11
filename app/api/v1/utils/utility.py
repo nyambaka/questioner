@@ -45,6 +45,7 @@ def reflect_meetup(meet_up):
         return 501
     meetup_feedback=copy
     del meetup_feedback["question"]
+    del meetup_feedback["rsvp"]
     return meetup_feedback
 
 
