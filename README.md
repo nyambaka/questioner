@@ -14,12 +14,13 @@ or bottom of the log.
 
 
 #installing
-1.clone this git repository
-2.install pthon 3.5 
-3.create a vitualenvironment for python
-4.install all packages in requirements.txt
+1. clone this git repository
+2. install pthon 3.5 
+3. create a vitualenvironment for python
+4. install all packages in requirements.txt
 
 #running the application
+
 from the root directory of the structure run python run.py
 
 
