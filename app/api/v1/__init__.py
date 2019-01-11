@@ -1,13 +1,14 @@
+from operator import methodcaller
+
 from flask import Flask, request, jsonify
 from app.api.v1.controller.meetupclass import MeetUp
 from app.api.v1.controller.questionclass import Question
+from app.api.v1.controller.userclass import User
 from app.api.v1.model.database import *
 from app.api.v1.controller.rsvpclass import Rsvp
 from app.api.v1.utils.utility import meet_up_add_breath, question_add_breath, reflect_meetup, reflect_question, \
-    id_generator, reflect_vote
-from app.api.v1.controller.commentclass import Comment
+    id_generator, reflect_vote, user_add_breath ,validate_user_login_details
 from app.api.v1.utils.error_file import en_errors
-
 application = Flask(__name__)
 
 
@@ -114,6 +115,41 @@ def remember():
     print(meet_ups)
     return "done"
 
+
+@application.route("/signup", methods= ["post"])
+def sign_up():
+    if not request.get_json():
+        return "error"
+    data = user_add_breath(request.get_json(), ids)
+    tempUser = User(data)
+    error = tempUser.self_validate()
+    if not error:
+        for i in users:
+            sample = User(i)
+            if sample.get_user_name() == tempUser.get_user_name():
+                return jsonify(708)
+            if sample.get_email() == tempUser.get_email():
+                return jsonify(709)
+        users.append(tempUser.get_data())
+        return jsonify(tempUser.get_data())
+    return jsonify(error)
+
+@application.route("/login", methods=["post"])
+def login():
+    if not request.get_json():
+        return 710
+    if validate_user_login_details(request.get_json()) == 0:
+        for i in users:
+            temp_user = User(i)
+            if "email" in request.get_json().keys():
+                if temp_user.get_email() == request.get_json()["email"] and temp_user.get_password() == request.get_json()["password"]:
+                    return jsonify(201)
+            if "username" in request.get_json().keys():
+                if temp_user.get_user_name() == request.get_json()["username"] and temp_user.get_password() == request.get_json()["password"]:
+                    return jsonify(201)
+        return jsonify(712)
+    print(validate_user_login_details(request.get_json()))
+    return jsonify(711)
 
 
 def create_app():
