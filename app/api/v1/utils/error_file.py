@@ -28,6 +28,11 @@ en_errors = {
     112: "a meetup dunder init function takes a dictinary as its parameter",
     501: "bad request format the body should be of type json",
     502: "bad input format use dictionay as input",
-    601: "meetup not specified in this question has not been found"
+    601: "meetup not specified in this question has not been found",
+    113:"rsvp not set",
+    114:"rsvp should be of type json {}",
+    "cor-rsvp":"successfully updated your rsvp",
+    "m_rsvp_ue":"user should be of type int",
+    "m_rsvp_fe":"rsvp should be yes ,no or maybe"
 
 }

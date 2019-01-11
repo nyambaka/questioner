@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from app.api.v1.controller.meetupclass import MeetUp
 from app.api.v1.controller.questionclass import Question
 from app.api.v1.model.database import *
+from app.api.v1.controller.rsvpclass import Rsvp
 from app.api.v1.utils.utility import meet_up_add_breath, question_add_breath, reflect_meetup, reflect_question, \
     id_generator, reflect_vote
 from app.api.v1.controller.commentclass import Comment
@@ -10,7 +11,7 @@ from app.api.v1.utils.error_file import en_errors
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=["get"])
 def hello_world():
     return 'Hello World!'
 
@@ -68,7 +69,7 @@ def post_question():
     })
 
 
-@app.route("/question/<question_id>", methods=["patch"])
+@app.route("/question/<question_id>/upvote", methods=["patch"])
 def upvote(question_id):
     for m in meet_ups:
         for q in m["question"]:
@@ -90,6 +91,22 @@ def down_vote(question_id):
     return jsonify({
         "error ": "no question found with that id"
     })
+
+
+@app.route("/meetups/<meetup_id>/rsvp", methods=["post"])
+def post_rsvp(meetup_id):
+    temp_rsvp = Rsvp(request.get_json())
+    error = temp_rsvp.self_validate()
+    if not error:
+        for m in meet_ups:
+            if m["id"] == int(meetup_id):
+                m["rsvp"][request.get_json()["userid"]] = request.get_json()["rsvp"]
+        return jsonify({
+            "status": 201,
+            "message": en_errors["cor-rsvp"]
+        }
+        )
+    return jsonify(error)
 
 
 @app.route("/look")
