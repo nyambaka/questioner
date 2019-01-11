@@ -8,36 +8,36 @@ from app.api.v1.utils.utility import meet_up_add_breath, question_add_breath, re
 from app.api.v1.controller.commentclass import Comment
 from app.api.v1.utils.error_file import en_errors
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route('/', methods=["get"])
+@application.route('/', methods=["get"])
 def hello_world():
     return 'Hello World!'
 
 
-@app.route("/meetups", methods=["get"])
+@application.route("/meetups", methods=["get"])
 def meetup():
     responses = []
     for i in meet_ups:
-        responses.append(reflect_meetup(i))
+        responses.applicationend(reflect_meetup(i))
     return jsonify(responses)
 
 
-@app.route("/meetups", methods=["post"])
+@application.route("/meetups", methods=["post"])
 def post_meet_up():
     final = meet_up_add_breath(request.get_json(), ids)
     test = MeetUp(final)
     error = test.self_validate()
     if not error:
-        meet_ups.append(final)
+        meet_ups.applicationend(final)
         return jsonify(reflect_meetup(final))
     return jsonify({
         "error": en_errors[error]
     })
 
 
-@app.route("/meetups/<meet_up_id>", methods=["get"])
+@application.route("/meetups/<meet_up_id>", methods=["get"])
 def meet_up_specific(meet_up_id):
     for i in meet_ups:
         buffer = MeetUp(i)
@@ -48,14 +48,14 @@ def meet_up_specific(meet_up_id):
     })
 
 
-@app.route("/question", methods=["post"])
+@application.route("/question", methods=["post"])
 def post_question():
     buffer_value = question_add_breath(request.get_json(), ids)
     buffer_class = Question(buffer_value)
     error = buffer_class.self_validate()
     for i in meet_ups:
         if i["id"] == buffer_value["meetup"]:
-            i["question"].append(buffer_class.get_data())
+            i["question"].applicationend(buffer_class.get_data())
             return jsonify(
                 reflect_question(buffer_value)
             )
@@ -69,7 +69,7 @@ def post_question():
     })
 
 
-@app.route("/question/<question_id>/upvote", methods=["patch"])
+@application.route("/question/<question_id>/upvote", methods=["patch"])
 def upvote(question_id):
     for m in meet_ups:
         for q in m["question"]:
@@ -81,7 +81,7 @@ def upvote(question_id):
     })
 
 
-@app.route("/question/<question_id>/downvote", methods=["patch"])
+@application.route("/question/<question_id>/downvote", methods=["patch"])
 def down_vote(question_id):
     for m in meet_ups:
         for q in m["question"]:
@@ -93,7 +93,7 @@ def down_vote(question_id):
     })
 
 
-@app.route("/meetups/<meetup_id>/rsvp", methods=["post"])
+@application.route("/meetups/<meetup_id>/rsvp", methods=["post"])
 def post_rsvp(meetup_id):
     temp_rsvp = Rsvp(request.get_json())
     error = temp_rsvp.self_validate()
@@ -109,7 +109,8 @@ def post_rsvp(meetup_id):
     return jsonify(error)
 
 
-@app.route("/look")
+@application.route("/look")
 def remember():
     print(meet_ups)
     return "done"
+
