@@ -70,9 +70,7 @@ def reflect_vote(meet_up, question_index):
 def validate_user_login_details(user_details):
     if not isinstance(user_details, dict):
         return 506
-    if not "username" in user_details.keys():
-        return 507
-    if not "email" in user_details.keys():
+    if not "email" and "username" in user_details.data.keys():
         return 507
     if not "password" in user_details.keys():
         return 508

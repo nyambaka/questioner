@@ -141,14 +141,18 @@ def login():
     if validate_user_login_details(request.get_json()) == 0:
         for i in users:
             temp_user = User(i)
-            if "email" in request.get_json().keys():
-                if temp_user.get_email() == request.get_json()["email"] and temp_user.get_password() == request.get_json()["password"]:
+            data = request.get_json()
+            print(type(data))
+            if "email" in data.keys():
+                if temp_user.get_email() == data["email"] and temp_user.get_password() == request.get_json()["password"]:
+                    login_user.append(temp_user.get_id())
                     return jsonify(201)
-            if "username" in request.get_json().keys():
-                if temp_user.get_user_name() == request.get_json()["username"] and temp_user.get_password() == request.get_json()["password"]:
+
+            if "username" in data.keys():
+                if temp_user.get_user_name() == data["username"] and temp_user.get_password() == request.get_json()["password"]:
+                    login_user.append(temp_user.get_id())
                     return jsonify(201)
         return jsonify(712)
-    print(validate_user_login_details(request.get_json()))
     return jsonify(711)
 
 
