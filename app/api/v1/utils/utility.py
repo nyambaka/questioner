@@ -11,6 +11,9 @@ def meet_up_add_breath(meet_up, id_dictionary):
         return 502
     meet_up["id"] = id_generator(id_dictionary, "meet_up")
     meet_up["question"] = []
+    meet_up["rsvp"] = {}
+    for i in meet_up["user"]:
+        meet_up["rsvp"][i] = "null"
     return meet_up
 
 

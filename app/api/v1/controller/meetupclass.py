@@ -82,6 +82,18 @@ class MeetUp:
     def get_data(self):
         return self.data
 
+    def get_rsvp(self):
+        if not self.is_set("rsvp"):
+            return 113
+        return self.data["rsvp"]
+
+    def set_rsvp(self,new_rsvp):
+        if not isinstance(new_rsvp, dict):
+            return 114
+        self.data["rsvp"] = new_rsvp
+        return self
+
+
     def self_validate(self):
         if not isinstance(self.data, dict):
             return 112
@@ -101,6 +113,10 @@ class MeetUp:
             return 111
         if not self.type_check("label", str):
             return 110
+        if not self.is_set("rsvp"):
+            return 113
+        if not self.type_check("rsvp", dict):
+            return 114
         return 0
 
 # samplemeetup={
