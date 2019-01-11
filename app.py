@@ -1,5 +1,11 @@
-from app.api.v1 import app
+from app.api.v1 import application
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
+
+app = application
+
+
+def app():
+    return application.run()
