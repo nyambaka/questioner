@@ -1,8 +1,4 @@
-from app.api.v1 import application
-
-if __name__ == "__main__":
-    application.run()
+from app.api.v1 import create_app
 
 
-def app():
-    return application.run()
+app = create_app()
