@@ -20,7 +20,7 @@ def hello_world():
 def meetup():
     responses = []
     for i in meet_ups:
-        responses.applicationend(reflect_meetup(i))
+        responses.append(reflect_meetup(i))
     return jsonify(responses)
 
 
@@ -30,7 +30,7 @@ def post_meet_up():
     test = MeetUp(final)
     error = test.self_validate()
     if not error:
-        meet_ups.applicationend(final)
+        meet_ups.append(final)
         return jsonify(reflect_meetup(final))
     return jsonify({
         "error": en_errors[error]
@@ -59,7 +59,7 @@ def post_question():
     error = buffer_class.self_validate()
     for i in meet_ups:
         if i["id"] == buffer_value["meetup"]:
-            i["question"].applicationend(buffer_class.get_data())
+            i["question"].append(buffer_class.get_data())
             return jsonify(
                 reflect_question(buffer_value)
             )
