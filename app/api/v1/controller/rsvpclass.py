@@ -11,50 +11,50 @@ class Rsvp:
 
     def get_user_id(self):
         if not self.is_set("userid"):
-            return 801
+            return 51
         return self.data["userid"]
 
     def set_user_id(self, new_id):
         if not isinstance(new_id, int):
-            return 804
+            return 52
         self.data["userid"] = new_id
 
     def set_rsvp(self, new_rsvp):
         if not isinstance(new_rsvp, str):
-            return 802
+            return 53
         self.data["userid"] = new_rsvp
         return self
 
     def get_rsvp(self):
         if not self.is_set("rsvp"):
-            return 803
+            return 54
         return self.data["rsvp"]
 
     def get_meetup(self):
         if not self.is_set("meetup"):
-            return 806
+            return 55
         return self.data["meetup"]
 
     def set_meetup(self, new_meetup):
         if not isinstance(new_meetup, int):
-            return 807
+            return 56
         self.data["meetup"] = new_meetup
 
     def self_validate(self):
         if not isinstance(self.data, dict):
-            return 808
+            return 57
         if not self.is_set("userid"):
-            return 801
+            return 51
         if not self.type_check("userid", int):
-            return 804
+            return 52
         if not self.is_set("rsvp"):
-            return 803
+            return 54
         if not self.type_check("rsvp", str):
-            return 802
+            return 53
         if not self.data["rsvp"].lower() in ["yes", "no", "maybe"]:
-            return 805
+            return 58
         if not self.is_set("meetup"):
-            return 806
+            return 55
         if not self.type_check("meetup", int):
-            return 807
+            return 56
         return 0
