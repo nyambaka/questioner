@@ -234,7 +234,7 @@ Three_route_name_server = {
 }
 
 allowed_methods = ["POST", "GET", "PATCH", "PUT", "DELETE", "COPY",
-                   "HEAD", "OPTIONS", " LINK", "UNLINK", "PURGE", "LOCK",
+                   "HEAD", "OPTIONS", "LINK", "UNLINK", "PURGE", "LOCK",
                    "UNLOCK", "PROPFIND", "VIEW"]
 
 
