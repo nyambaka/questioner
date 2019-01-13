@@ -17,7 +17,7 @@ class TestQuestion(unittest.TestCase):
     def test_post_question(self):
         response = self.client.post(self.url_prefix+"/question",headers ={"Content-Type":"application/json"},data = json.dumps(self.sample_data))
         self.assertEqual(response.status_code,200,"posting in the meetup should be allowed")
-        self.assertEqual(json.loads(response.get_data().decode()), {'userid': 1, 'meetup': 1, 'body': 'how can i do it better', 'id': 1}, "correct response should be given back")
+        self.assertEqual(json.loads(response.get_data().decode()), {'error': 'meetup not specified in this question has not been found'}, "correct response should be given back")
         self.meet_state = json.loads(response.get_data().decode())
 
     def test_fetch_specific_question(self):
