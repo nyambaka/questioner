@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Blueprint
 from app.api.v1.controller.meetupclass import MeetUp
 from app.api.v1.controller.questionclass import Question
 from app.api.v1.controller.userclass import User
@@ -9,6 +9,8 @@ from app.api.v1.utils.utility import meet_up_add_breath, question_add_breath, re
 from app.api.v1.utils.error_file import en_errors
 
 application = Flask(__name__)
+blueprint = Blueprint("name", __name__, url_prefix="/api/v1")
+application.register_blueprint(blueprint)
 
 
 # @application.route("/meetups", methods=["get"])
@@ -234,7 +236,7 @@ Three_route_name_server = {
 }
 
 allowed_methods = ["POST", "GET", "PATCH", "PUT", "DELETE", "COPY",
-                   "HEAD", "OPTIONS", " LINK", "UNLINK", "PURGE", "LOCK",
+                   "HEAD", "OPTIONS", "LINK", "UNLINK", "PURGE", "LOCK",
                    "UNLOCK", "PROPFIND", "VIEW"]
 
 
