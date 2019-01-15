@@ -27,5 +27,3 @@ class testUserLogin(unittest.TestCase):
         response = self.app.post(self.url_prefix+"/login", data=json.dumps(data), headers={"Content-Type": "application/json"}, )
         self.assertEqual(json.loads(response.get_data().decode())["error"], 'invalid login information',
                          "correct error message")
-
-
