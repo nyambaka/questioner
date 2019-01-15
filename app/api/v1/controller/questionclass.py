@@ -94,6 +94,18 @@ class Question:
         self.data['comment'].append(new_comment)
         return self
 
+    def get_meetup(self):
+        if not self.is_set("meetup"):
+            return 217
+        return self.data['meetup']
+
+    def set_meetup(self, meetup):
+        if not isinstance(meetup, int):
+            return 218
+        self.data['meetup'] = meetup
+        return self
+
+
     def get_data(self):
         return self.data
 
@@ -124,6 +136,10 @@ class Question:
             return 211
         if not self.type_check("comment", list):
             return 212
+        if not self.is_set("meetup"):
+            return 217
+        if not self.type_check("meetup", int):
+            return 218
         return 0
 
 # samplequestion={
