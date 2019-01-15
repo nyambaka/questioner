@@ -1,8 +1,10 @@
 import unittest
-from app.api.v1 import application
+from app import create_app
 import json
 
 data = ""
+application = create_app()
+
 sample_meeup = {
     "label": "meetup",
     "user": [1, 2]
@@ -13,14 +15,14 @@ class TestRsvp(unittest.TestCase):
 
     def setUp(self):
         self.app = application.test_client()
-        self.url_prefix = ""
+        self.url_prefix = "api/v1"
 
     def test_a_setting_up_a_meeting(self):
         global sample_meeup
         response = self.app.post(self.url_prefix + "/meetups", data=json.dumps(sample_meeup),
                                  headers={"Content-Type": "application/json"})
-        self.assertEqual(response.status_code, 200, "posting a user should be possible")
-        self.assertEqual(json.loads(response.get_data().decode())["id"], 1, "response should be correct")
+        self.assertEqual(response.status_code, 201, "posting a user should be possible")
+        self.assertEqual(json.loads(response.get_data().decode())["data"]["id"], 1, "response should be correct")
 
     def test_b_post_empty(self):
         global data
@@ -39,7 +41,6 @@ class TestRsvp(unittest.TestCase):
     def tst_zone(self):
         response = self.app.post(self.url_prefix + "/meetups/1/rsvp", data=json.dumps(data),
                                  headers={"Content-Type": "application/json"})
-        self.assertEqual(response.status_code, 200, "correct response code")
         return response
 
     def test_d_with_incorrect_user_id(self):

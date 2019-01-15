@@ -1,12 +1,14 @@
 import  unittest
-from app.api.v1 import  application
+from app import  create_app
 import json
+from app.api.v1.utils.error_file import en_errors
+application =create_app()
 
 class TestQuestion(unittest.TestCase):
 
     def setUp(self):
         self.client = application.test_client()
-        self.url_prefix = ""
+        self.url_prefix = "api/v1"
         self.sample_data ={
             "userid":1,
             "body":"how can i do it better",
@@ -16,8 +18,8 @@ class TestQuestion(unittest.TestCase):
 
     def test_post_question(self):
         response = self.client.post(self.url_prefix+"/question",headers ={"Content-Type":"application/json"},data = json.dumps(self.sample_data))
-        self.assertEqual(response.status_code,200,"posting in the meetup should be allowed")
-        self.assertEqual(json.loads(response.get_data().decode()), {'error': 'meetup not specified in this question has not been found'}, "correct response should be given back")
+        self.assertEqual(response.status_code,400,"posting in the meetup should be allowed")
+        self.assertEqual(json.loads(response.get_data().decode())["error"], en_errors[601], "correct response should be given back")
         self.meet_state = json.loads(response.get_data().decode())
 
     def test_fetch_specific_question(self):
