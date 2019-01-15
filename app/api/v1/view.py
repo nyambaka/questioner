@@ -7,6 +7,7 @@ from app.api.v1.controller.rsvpclass import Rsvp
 from app.api.v1.utils.utility import meet_up_add_breath, question_add_breath, reflect_meetup, reflect_question, \
     id_generator, reflect_vote, user_add_breath, validate_user_login_details
 from app.api.v1.utils.error_file import en_errors
+from datetime import datetime
 
 application = Flask(__name__)
 blueprint = Blueprint('blueprint', __name__)
@@ -248,6 +249,18 @@ def method_error_handler(e):
             "error": "method not allowed"
         }
     ), 405
+
+
+@blueprint.route("/meetups/upcomings")
+def upcoming_meetups():
+    events=[]
+    for m in meet_ups:
+        if datetime.strptime(m["on"],'%b %d %Y') > datetime.now():
+            events.append(m)
+    return jsonify({
+        "data":events,
+        "status":200
+    })
 
 
 def invalid_id(variable):

@@ -1,3 +1,5 @@
+import  datetime
+
 class MeetUp:
     def __init__(self, data):
         self.data = data
@@ -117,6 +119,14 @@ class MeetUp:
             return 113
         if not self.type_check("rsvp", dict):
             return 114
+        if not self.is_set("on"):
+            return 116
+        if not self.type_check("on",str):
+            return 117
+        try:
+            datetime.datetime.strptime(self.data["on"], '%b %d %Y')
+        except:
+            return 118
         return 0
 
 # samplemeetup={

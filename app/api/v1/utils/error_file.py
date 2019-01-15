@@ -86,6 +86,9 @@ en_errors = {
     73: "data inserted correctly",
     74: "invalid route",
     217:"meetup has not been set",
-    218:"meetup should be of type int"
+    218:"meetup should be of type int",
+    116:"you should set when the meeting is supposed to be set using on:[date]",
+    117:"the date format is not correct",
+    118:"use the date format of like Jan 26 2019"
 
 }
