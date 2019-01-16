@@ -46,6 +46,7 @@ def post_meet_up():
             "data": reflect_meetup(final)
         }
         ), 201
+    print(error)
     return jsonify({
         "error": en_errors[error]
     }), 400

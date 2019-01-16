@@ -6,7 +6,6 @@ from ..v1.utils.error_file import en_errors
 application = create_app()
 
 
-
 class TestUserLogin(unittest.TestCase):
 
     def setUp(self):
@@ -24,28 +23,25 @@ class TestUserLogin(unittest.TestCase):
             "password": "nelsonking"
         }
 
-
     def test_a_user_register(self):
         response = self.app.post(self.url_prefix + "/signup", headers={"Content-Type": "application/json"},
-                                    data=json.dumps(self.data))
+                                 data=json.dumps(self.data))
         result = json.loads(response.get_data().decode())
-        self.assertEqual(result["data"]["firstname"],"nelson","first name should be correct")
-        self.assertEqual(result["data"]["lastname"],"nyambaka","last name should be correct")
-        self.assertEqual(result["data"]["othername"],"nyambaka","other name should be correct")
-        self.assertEqual(result["data"]["email"],"nelsonnyambaka@gmail.com","email should be correct")
-        self.assertEqual(result["data"]["phonenumber"],"0700741837","phonenumber should be correct")
-        self.assertEqual(result["data"]["username"],"nelly","phonenumber should be correct")
-        self.assertEqual(result["data"]["registered"],"2018-01-20","registered should be correct")
-        self.assertEqual(result["data"]["isadmin"],1,"isadmin should be correct")
-        self.assertEqual(result["data"]["password"],"nelsonking","password should be correct")
-        self.assertEqual(response.status_code,201,"user created successfully")
-
-
+        self.assertEqual(result["data"]["firstname"], "nelson", "first name should be correct")
+        self.assertEqual(result["data"]["lastname"], "nyambaka", "last name should be correct")
+        self.assertEqual(result["data"]["othername"], "nyambaka", "other name should be correct")
+        self.assertEqual(result["data"]["email"], "nelsonnyambaka@gmail.com", "email should be correct")
+        self.assertEqual(result["data"]["phonenumber"], "0700741837", "phonenumber should be correct")
+        self.assertEqual(result["data"]["username"], "nelly", "phonenumber should be correct")
+        self.assertEqual(result["data"]["registered"], "2018-01-20", "registered should be correct")
+        self.assertEqual(result["data"]["isadmin"], 1, "isadmin should be correct")
+        self.assertEqual(result["data"]["password"], "nelsonking", "password should be correct")
+        self.assertEqual(response.status_code, 201, "user created successfully")
 
     def test_b_user_login(self):
         response = self.app.post(self.url_prefix + "/login", headers={"Content-Type": "application/json"},
                                  data=json.dumps(self.data))
         result = json.loads(response.get_data().decode())
-        self.assertEqual(result["data"],"login was successful","the correct message should be returned")
-        self.assertEqual(result["status"],201,"the correct error message should be returned")
-        self.assertEqual(response.status_code,201,"correct status code should be returned")
+        self.assertEqual(result["data"], "login was successful", "the correct message should be returned")
+        self.assertEqual(result["status"], 201, "the correct error message should be returned")
+        self.assertEqual(response.status_code, 201, "correct status code should be returned")

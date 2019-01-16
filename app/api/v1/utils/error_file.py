@@ -85,6 +85,9 @@ en_errors = {
     72: "no question found with that id",
     73: "data inserted correctly",
     74: "invalid route",
-    75:"login was successful"
+    75:"login was successful",
+    116:"date for the meeting has not been set",
+    117:"incorrect date format",
+    118:"date should be of type lik Jan 12 2018"
 
 }

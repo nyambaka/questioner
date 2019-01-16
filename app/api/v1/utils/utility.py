@@ -77,3 +77,4 @@ def validate_user_login_details(user_details):
     if not "password" in user_details.keys():
         return 508
     return 0
+
