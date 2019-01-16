@@ -153,7 +153,10 @@ def post_rsvp(meetup_id):
                 "error": en_errors[59]
             }
         ), 400
-    return jsonify(en_errors[error])
+    return jsonify({
+        "error":en_errors[error],
+        "status":400
+    })
 
 
 @blueprint.route("/look")
@@ -213,7 +216,7 @@ def login():
                     login_user.append(temp_user.get_id())
                     return jsonify({
                         "status": 201,
-                        "data": en_errors[73]
+                        "data": en_errors[75]
                     }), 201
             if "username" in data.keys():
                 if temp_user.get_user_name() == data["username"] and temp_user.get_password() == request.get_json()[
@@ -221,7 +224,7 @@ def login():
                     login_user.append(temp_user.get_id())
                     return jsonify({
                         "status": 201,
-                        "data": en_errors[73]
+                        "data": en_errors[75]
                     }), 201
     if validate_user_login_details(request.get_json()) != 0:
         return jsonify({
