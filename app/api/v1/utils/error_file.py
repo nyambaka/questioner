@@ -28,7 +28,7 @@ en_errors = {
     112: "a meetup dunder init function takes a dictinary as its parameter",
     501: "bad request format the body should be of type json",
     502: "bad input format use dictionay as input",
-    601: "meetup specified in this question has not been found",
+    601: "meetup not specified in this question has not been found",
     113: "rsvp not set",
     114: "rsvp should be of type json {}",
     "cor-rsvp": "successfully updated your rsvp",
@@ -84,11 +84,5 @@ en_errors = {
     71: "no question found with that id",
     72: "no question found with that id",
     73: "data inserted correctly",
-    74: "invalid route",
-    217:"meetup has not been set",
-    218:"meetup should be of type int",
-    116:"you should set when the meeting is supposed to be set using on:[date]",
-    117:"the date format is not correct",
-    118:"use the date format of like Jan 26 2019"
-
+    74: "invalid route"
 }

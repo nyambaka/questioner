@@ -105,7 +105,6 @@ class Question:
         self.data['meetup'] = meetup
         return self
 
-
     def get_data(self):
         return self.data
 

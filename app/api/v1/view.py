@@ -79,18 +79,18 @@ def post_question():
     error = buffer_class.self_validate()
     if error:
         return jsonify({
-            "status":400,
-            "error":en_errors[error]
-        }),400
+            "status": 400,
+            "error": en_errors[error]
+        }), 400
     for i in meet_ups:
         if i["id"] == buffer_value["meetup"]:
             i["question"].append(buffer_class.get_data())
             return jsonify(
                 {
-                    "status":201,
+                    "status": 201,
                     "data": reflect_question(buffer_value)
                 }
-            ),201
+            ), 201
 
     if int(error) != 0:
         return jsonify({
@@ -160,8 +160,8 @@ def post_rsvp(meetup_id):
 def remember():
     return jsonify(
         {
-            "status":200,
-            "data":meet_ups
+            "status": 200,
+            "data": meet_ups
         }
     )
 
@@ -181,22 +181,22 @@ def sign_up():
                     {
                         "error": en_errors[801]
                     }
-                )
+                ), 400
             if sample.get_email() == tempUser.get_email():
                 return jsonify(
                     {
                         "errror": en_errors[802]
                     }
-                )
+                ), 400
         users.append(tempUser.get_data())
         return jsonify(
             {"status": 201,
              "data": tempUser.get_data()
              }
-        )
+        ), 201
     return jsonify({
         "error": en_errors[error]
-    })
+    }), 400
 
 
 @blueprint.route("/login", methods=["post"])
@@ -214,7 +214,7 @@ def login():
                     return jsonify({
                         "status": 201,
                         "data": en_errors[73]
-                    })
+                    }), 201
             if "username" in data.keys():
                 if temp_user.get_user_name() == data["username"] and temp_user.get_password() == request.get_json()[
                     "password"]:
@@ -222,44 +222,25 @@ def login():
                     return jsonify({
                         "status": 201,
                         "data": en_errors[73]
-                    })
+                    }), 201
     if validate_user_login_details(request.get_json()) != 0:
         return jsonify({
             "error": en_errors[validate_user_login_details(request.get_json())]
-        })
+        }), 400
     return jsonify({
         "error": en_errors[711]
-    })
-
-
-
-@blueprint.errorhandler(404)
-def error_handler(e):
-    return jsonify({
-        "status": 404,
-        "error": "not found"
-    }), 404
-
-
-@blueprint.errorhandler(405)
-def method_error_handler(e):
-    return jsonify(
-        {
-            "status": 405,
-            "error": "method not allowed"
-        }
-    ), 405
+    }), 400
 
 
 @blueprint.route("/meetups/upcomings")
 def upcoming_meetups():
-    events=[]
+    events = []
     for m in meet_ups:
-        if datetime.strptime(m["on"],'%b %d %Y') > datetime.now():
+        if datetime.strptime(m["on"], '%b %d %Y') > datetime.now():
             events.append(m)
     return jsonify({
-        "data":events,
-        "status":200
+        "data": events,
+        "status": 200
     })
 
 
