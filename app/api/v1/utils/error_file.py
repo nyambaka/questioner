@@ -84,5 +84,7 @@ en_errors = {
     71: "no question found with that id",
     72: "no question found with that id",
     73: "data inserted correctly",
-    74: "invalid route"
+    74: "invalid route",
+    75:"login was successful"
+
 }
