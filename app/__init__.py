@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 
 from app.api.v1.view import blueprint
 
+
 app = Flask(__name__)
 
 
