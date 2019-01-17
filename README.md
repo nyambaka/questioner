@@ -60,13 +60,13 @@ _End points_
 |POST|/api/v1/meetups/<meetup_id>/rsvp|post an rsvp
   
   
-  #sample data
-  | route  | sample data
-  |------|---------------
-  |/api/v1/signup |{"firstname":"nelson","lastname":"nyambaka","othername":"nyambaka","email":"nelsonnyamgbaka@gmail.com","phonenumber":"0700741837","username":"nelfly","registered":"2018-01-20","isadmin":1,"password":"nelsonking"}
-   |/api/v1/login |{"email":"nelsonnyamgbaka@gmail.com","password":"nelsonking"}   or {"username":"nelfly","password":"nelsonking"}
-   |/ api/v1/question|{"userid":1,"body":"javascript is the best language i think we should not discuss this","meetup":4}
-   |/api/v1/meetups/<meetup_id>/rsvp|{"rsvp":"yes","userid":1,"meetup":4}
-
+ #sample data
+| route  | sample data
+|--------|---------------
+|/api/v1/signup |{"firstname":"nelson","lastname":"nyambaka","othername":"nyambaka","email":"nelsonnyamgbaka@gmail.com","phonenumber":"0700741837","username":"nelfly","registered":"2018-01-20","isadmin":1,"password":"nelsonking"}
+|/api/v1/login |{"email":"nelsonnyamgbaka@gmail.com","password":"nelsonking"}   or {"username":"nelfly","password":"nelsonking"}
+|/ api/v1/question|{"userid":1,"body":"javascript is the best language i think we should not discuss this","meetup":4}
+|/api/v1/meetups/<meetup_id>/rsvp|{"rsvp":"yes","userid":1,"meetup":4}
+|/api/v1/meetups |{"user":[1,2,3],"on":"Jun 1 2045","topic":"javascript is best languange please lets not discuss","location":"mau summit"}
 #author
 Nelson Nyambaka
