@@ -13,8 +13,9 @@ class TestMeetups(unittest.TestCase):
         self.url_prefix = "api/v1"
         self.data = {
             "user": [1, 2, 3],
-            "label": "cheetah",
-            "on": "Jun 1 2005"
+            "topic": "cheetah",
+            "on": "Jun 1 2045",
+            "location":"sports club"
         }
         self.sample_question = {
             "userid": 1,
@@ -32,8 +33,8 @@ class TestMeetups(unittest.TestCase):
                                     data=json.dumps(self.data))
         result = json.loads(response.get_data().decode())
         self.assertEqual(result["data"]["id"], 2, "id should be one")
-        self.assertEqual(result["data"]["label"], "cheetah", "the label should be correct")
-        self.assertEqual(result["data"]["on"], "Jun 1 2005", "date should be correct")
+        self.assertEqual(result["data"]["topic"], "cheetah", "the topic should be correct")
+        self.assertEqual(result["data"]["on"], "Jun 1 2045", "date should be correct")
         self.assertEqual(result["data"]["user"], [1, 2, 3], "the users list should be correct")
         self.assertEqual(response.status_code, 201, "correct status code should be done")
 
@@ -42,8 +43,8 @@ class TestMeetups(unittest.TestCase):
                                    data=json.dumps(self.data))
         result = json.loads(response.get_data().decode())
         self.assertEqual(result["data"]["id"], 2, "id should be one")
-        self.assertEqual(result["data"]["label"], "cheetah", "the label should be correct")
-        self.assertEqual(result["data"]["on"], "Jun 1 2005", "date should be correct")
+        self.assertEqual(result["data"]["topic"], "cheetah", "the topic should be correct")
+        self.assertEqual(result["data"]["on"], "Jun 1 2045", "date should be correct")
         self.assertEqual(result["data"]["user"], [1, 2, 3], "the users list should be correct")
         self.assertEqual(response.status_code, 201, "correct status code should be done")
 
@@ -65,9 +66,9 @@ class TestMeetups(unittest.TestCase):
         self.assertEqual(response.status_code, 200, "correct id should be returned")
         self.assertEqual(result["status"], 200, "correct status code should be returned")
         self.assertEqual(result["data"]["id"], 2, "correct id should be returned")
-        self.assertEqual(result["data"]["label"], "cheetah", "the correct label for the meetup should be returned")
-        self.assertEqual(result["data"]["vote"], 1, "the correct label for the meetup should be returned")
-        self.assertEqual(result["data"]["on"], "Jun 1 2005", "correct date should be returned")
+        self.assertEqual(result["data"]["topic"], "cheetah", "the correct topic for the meetup should be returned")
+        self.assertEqual(result["data"]["vote"], 1, "the correct topic for the meetup should be returned")
+        self.assertEqual(result["data"]["on"], "Jun 1 2045", "correct date should be returned")
 
     def test_e_downvote(self):
         response = self.client.patch(self.url_prefix + "/question/1/downvote",
@@ -76,14 +77,14 @@ class TestMeetups(unittest.TestCase):
         self.assertEqual(response.status_code, 200, "correct id should be returned")
         self.assertEqual(result["status"], 200, "correct status code should be returned")
         self.assertEqual(result["data"]["id"], 2, "correct id should be returned")
-        self.assertEqual(result["data"]["label"], "cheetah", "the correct label for the meetup should be returned")
-        self.assertEqual(result["data"]["vote"], 0, "the correct label for the meetup should be returned")
-        self.assertEqual(result["data"]["on"], "Jun 1 2005", "correct date should be returned")
+        self.assertEqual(result["data"]["topic"], "cheetah", "the correct topic for the meetup should be returned")
+        self.assertEqual(result["data"]["vote"], 0, "the correct topic for the meetup should be returned")
+        self.assertEqual(result["data"]["on"], "Jun 1 2045", "correct date should be returned")
 
     def test_f_posting_rsvp(self):
         response = self.client.post(self.url_prefix + "/meetups/2/rsvp", data=json.dumps(self.sample_rsvp),
                                     headers={"Content-Type": "application/json"})
         result = json.loads(response.get_data().decode())
         self.assertEqual(response.status_code, 201, "correct status code should be returned")
-        self.assertEqual(result["message"], "successfully updated your rsvp", "correct response should be given back")
+        self.assertEqual(result["data"]["status"], "yes", "correct response should be given back")
         self.assertEqual(result["status"], 201, "correct error message should be given back")

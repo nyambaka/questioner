@@ -17,8 +17,8 @@ en_errors = {
     212: "all comment should be of type list",
     213: "a single comment should be of type dictionary",
     214: "a comment class dunder init method takes in a dictionary as its parameter",
-    110: "meetup label should be of type string",
-    111: "meetup label has not been set",
+    110: "meetup topic should be of type string",
+    111: "meetup topic has not been set",
     104: "meetup users should be provided using a list of intergers",
     105: "a single user id should be of type int",
     106: "question has not been set",
@@ -88,6 +88,14 @@ en_errors = {
     75:"login was successful",
     116:"date for the meeting has not been set",
     117:"incorrect date format",
-    118:"date should be of type lik Jan 12 2018"
+    118:"date should be of type lik Jan 12 2018",
+    78:"meeting has already taken place not rsvp is need",
+    79:"meetup does not match the one in the url",
+    80:"location has not been set",
+    81:"location should be of type string",
+    82:"you cannot post a meetup with previous date"
+
+
+
 
 }

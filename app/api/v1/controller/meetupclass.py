@@ -24,16 +24,16 @@ class MeetUp:
             self.data["id"] = new_id
             return self
 
-    def set_meet_up_label(self, new_label):
-        if not self.type_check(new_label, str):
+    def set_meet_up_topic(self, new_topic):
+        if not self.type_check(new_topic, str):
             return 110
-        self.data['label'] = new_label
+        self.data['topic'] = new_topic
         return self
 
-    def get_meet_up_label(self):
-        if not self.is_set("label"):
+    def get_meet_up_topic(self):
+        if not self.is_set("topic"):
             return 111
-        return self.data['label']
+        return self.data['topic']
 
     def get_user(self):
         if not self.is_set("user"):
@@ -90,6 +90,16 @@ class MeetUp:
             return 113
         return self.data["rsvp"]
 
+    def get_date(self):
+        if not self.is_set("on"):
+            return 80
+        return self.data["on"]
+
+    def set_date(self,new_date):
+        if not self.type_check("on"):
+            return 82
+        self.data["on"] = new_date
+
     def set_rsvp(self, new_rsvp):
         if not isinstance(new_rsvp, dict):
             return 114
@@ -111,9 +121,9 @@ class MeetUp:
             return 106
         if not self.type_check("question", list):
             return 107
-        if not self.is_set("label"):
+        if not self.is_set("topic"):
             return 111
-        if not self.type_check("label", str):
+        if not self.type_check("topic", str):
             return 110
         if not self.is_set("rsvp"):
             return 113
@@ -123,6 +133,10 @@ class MeetUp:
             return 116
         if not self.type_check("on", str):
             return 117
+        if not self.is_set("location"):
+            return 80
+        if not self.type_check("location", str):
+            return 81
         try:
             datetime.datetime.strptime(self.data["on"], '%b %d %Y')
         except:
@@ -133,5 +147,5 @@ class MeetUp:
 # 	"id":1,
 # 	"user":[],
 # 	"question":[],
-# 	"label":"team"
+# 	"topic":"team"
 # }

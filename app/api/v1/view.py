@@ -40,6 +40,11 @@ def post_meet_up():
     test = MeetUp(final)
     error = test.self_validate()
     if not error:
+        if not datetime.strptime(test.get_date(), '%b %d %Y') > datetime.now():
+            return jsonify({
+                "error": en_errors[82],
+                "status": 400
+            }), 400
         meet_ups.append(final)
         return jsonify({
             "status": 201,
@@ -143,10 +148,24 @@ def post_rsvp(meetup_id):
     if not error:
         for m in meet_ups:
             if m["id"] == int(meetup_id):
+                if not request.get_json()["meetup"] == int(meetup_id):
+                    return jsonify({
+                        "status":400,
+                        "error":en_errors[79]
+                    }),400
+                if not datetime.strptime(m["on"], '%b %d %Y') > datetime.now():
+                    return jsonify({
+                        "error":en_errors[78],
+                        "status":400
+                    }),400
                 m["rsvp"][request.get_json()["userid"]] = request.get_json()["rsvp"]
                 return jsonify({
                     "status": 201,
-                    "message": en_errors["cor-rsvp"]
+                    "data":{
+                        "topic":m["topic"],
+                        "meetup":m["id"],
+                        "status":request.get_json()["rsvp"]
+                    }
                 }), 201
         return jsonify(
             {
