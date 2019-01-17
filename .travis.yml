@@ -12,7 +12,7 @@ install:
 
 script:
   - python -m pytest --cov
-  - coverage run --source=api -m pytest && coverage report
+  - coverage run --source=app -m pytest && coverage report
 
 after_success:
   - coveralls
