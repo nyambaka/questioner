@@ -98,5 +98,8 @@ en_errors = {
     218:"meetup should be of type integer",
     219:"invalid data class should have a list ",
     220:"nothing was found with provided id",
-    221:"meetup id should be an integer"
+    221:"meetup id should be an integer",
+    222:"you should have either username or email address ",
+    223:"data provided is empty",
+    224:"incorrect login information "
 }

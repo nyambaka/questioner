@@ -11,6 +11,7 @@ from app.api.v1.controller.get_question import GetQuestion
 from app.api.v1.controller.get_meetup import GetMeetup
 from app.api.v1.controller.abs_patch import Patch
 from app.api.v1.controller.userclass import User
+from app.api.v1.controller.login_director import LoginDirector
 from app.api.v1.controller.login import Login
 
 blueprint = Blueprint('blueprint', __name__)
@@ -98,11 +99,8 @@ def sign_up():
 def login():
     if invalid_json():
         return invalid_json()
-    buffer = Login(request.get_json(),users)
-    buffer.new_display()
-    buffer.login_user()
-    result = buffer.get_display()
-    return result.render_internal_error()
+    buffer = LoginDirector(Login,request.get_json(),users)
+    return buffer.login()
 
 @blueprint.route("/meetups/upcomings")
 def upcoming_meetups():
