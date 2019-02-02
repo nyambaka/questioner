@@ -93,9 +93,10 @@ en_errors = {
     79:"meetup does not match the one in the url",
     80:"location has not been set",
     81:"location should be of type string",
-    82:"you cannot post a meetup with previous date"
-
-
-
-
+    82:"you cannot post a meetup with previous date",
+    217:"meetup has not been set",
+    218:"meetup should be of type integer",
+    219:"invalid data class should have a list ",
+    220:"nothing was found with provided id",
+    221:"meetup id should be an integer"
 }

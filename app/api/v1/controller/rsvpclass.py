@@ -1,4 +1,6 @@
-class Rsvp:
+from  app.api.v1.controller.abs_controller import AbsController
+
+class Rsvp(AbsController):
     def __init__(self, data):
         self.data = data
 
@@ -9,52 +11,45 @@ class Rsvp:
         print(self.data)
         return isinstance(self.data[key], claim_type)
 
-    def get_user_id(self):
+
+    def input_validate(self):
+        if not isinstance(self.data, dict):
+            return self.premature_return( 57)
         if not self.is_set("userid"):
-            return 51
-        return self.data["userid"]
-
-    def set_user_id(self, new_id):
-        if not isinstance(new_id, int):
-            return 52
-        self.data["userid"] = new_id
-
-    def set_rsvp(self, new_rsvp):
-        if not isinstance(new_rsvp, str):
-            return 53
-        self.data["userid"] = new_rsvp
+            return self.premature_return(51)
+        if not self.type_check("userid", int):
+            return self.premature_return(52)
+        if not self.is_set("rsvp"):
+            return self.premature_return(54)
+        if not self.type_check("rsvp", str):
+            return self.premature_return(53)
+        if not self.data["rsvp"].lower() in ["yes", "no", "maybe"]:
+            return self.premature_return(58)
+        if not self.is_set("meetup"):
+            return self.premature_return(55)
+        if not self.type_check("meetup", int):
+            return self.premature_return(56)
         return self
 
-    def get_rsvp(self):
-        if not self.is_set("rsvp"):
-            return 54
-        return self.data["rsvp"]
+    def save_to(self, containter):
+        self.save_to = containter
+        return self
 
-    def get_meetup(self):
-        if not self.is_set("meetup"):
-            return 55
-        return self.data["meetup"]
+    def save(self):
+        for m in self.save_to:
+            if self.data["meetup"] == m["id"]:
+                m["rsvp"][self.data["userid"]]= self.data["rsvp"]
+        return self
 
-    def set_meetup(self, new_meetup):
-        if not isinstance(new_meetup, int):
-            return 56
-        self.data["meetup"] = new_meetup
+    def modify_for_insert(self):
+        return self
 
-    def self_validate(self):
-        if not isinstance(self.data, dict):
-            return 57
-        if not self.is_set("userid"):
-            return 51
-        if not self.type_check("userid", int):
-            return 52
-        if not self.is_set("rsvp"):
-            return 54
-        if not self.type_check("rsvp", str):
-            return 53
-        if not self.data["rsvp"].lower() in ["yes", "no", "maybe"]:
-            return 58
-        if not self.is_set("meetup"):
-            return 55
-        if not self.type_check("meetup", int):
-            return 56
-        return 0
+    def modify_for_save(self,ids):
+        return self
+
+    def modify_for_display(self):
+        self._display.data = self.data
+        return self
+
+    def get_data(self):
+        return self

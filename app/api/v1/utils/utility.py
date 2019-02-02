@@ -1,22 +1,5 @@
-def id_generator(ids, key):
-    if key in ids.keys():
-        ids[key] = ids[key] + 1
-        return ids[key]
-    ids[key] = 1
-    return ids[key]
+# def meet_up_add_breath(meet_up, id_dictionary):
 
-
-def meet_up_add_breath(meet_up, id_dictionary):
-    if not isinstance(meet_up, dict):
-        return 502
-    meet_up["id"] = id_generator(id_dictionary, "meet_up")
-    meet_up["question"] = []
-    meet_up["rsvp"] = {}
-    if not "user" in meet_up.keys():
-        return 31131
-    for i in meet_up["user"]:
-        meet_up["rsvp"][i] = "null"
-    return meet_up
 
 
 def user_add_breath(user, id_dictionary):
@@ -77,4 +60,3 @@ def validate_user_login_details(user_details):
     if not "password" in user_details.keys():
         return 508
     return 0
-
