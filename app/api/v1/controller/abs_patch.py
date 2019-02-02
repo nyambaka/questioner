@@ -1,12 +1,14 @@
 from .get_question import GetQuestion
-class Patch():
 
-    def __init__(self,data):
-        self._controller=GetQuestion(data)
+
+class Patch:
+
+    def __init__(self, data):
+        self._controller = GetQuestion(data)
         self._controller.new_display()
-        self.data=data
+        self.data = data
 
-    def up_vote(self,id):
+    def up_vote(self, id):
         int_id = int(id)
         self._controller.get(int_id)
         for i in self.data:
@@ -15,7 +17,7 @@ class Patch():
                     q["vote"] += 1
         return self
 
-    def down_vote(self,id):
+    def down_vote(self, id):
         int_id = int(id)
         self._controller.get(int_id)
         for i in self.data:
