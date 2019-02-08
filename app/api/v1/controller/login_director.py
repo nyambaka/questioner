@@ -8,7 +8,7 @@ class LoginDirector:
     def login_user(self):
         self._controller.input_validate()
         try:
-            self._controller.data_error
+            self._controller._display.data_error
         except:
             if self._controller.is_set("username"):
                 return self._controller.login_with_username()

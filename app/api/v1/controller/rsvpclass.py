@@ -8,7 +8,6 @@ class Rsvp(AbsController):
         return key in self.data.keys()
 
     def type_check(self, key, claim_type):
-        print(self.data)
         return isinstance(self.data[key], claim_type)
 
 

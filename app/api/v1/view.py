@@ -1,10 +1,9 @@
-from flask import Flask, request, jsonify, Blueprint
+from flask import request, Blueprint
 from app.api.v1.controller.meetupclass import MeetUp
 from app.api.v1.controller.questionclass import Question
 from app.api.v1.model.database import *
 from app.api.v1.controller.front_controller import FrontController
 from app.api.v1.controller.rsvpclass import Rsvp
-from app.api.v1.utils.error_file import en_errors
 from datetime import datetime
 from app.api.v1.controller.get_front_controller import GetFrontController
 from app.api.v1.controller.get_question import GetQuestion
@@ -13,6 +12,7 @@ from app.api.v1.controller.abs_patch import Patch
 from app.api.v1.controller.userclass import User
 from app.api.v1.controller.login_director import LoginDirector
 from app.api.v1.controller.login import Login
+from app.api.v1.controller.display import Display
 
 blueprint = Blueprint('blueprint', __name__)
 
@@ -73,34 +73,30 @@ def post_rsvp(meetup_id):
         return invalid_json()
     if invalid_id(meetup_id):
         return invalid_id(meetup_id)
-    buffer= FrontController(Rsvp,request.get_json())
-    return buffer.post(ids,meet_ups)
+    buffer = FrontController(Rsvp, request.get_json())
+    return buffer.post(ids, meet_ups)
 
 
 @blueprint.route("/look")
 def remember():
-    return jsonify(
-        {
-            "status": 200,
-            "data": meet_ups
-        }
-    ),200
+    return Display.custom_render(meet_ups, 200)
 
 
 @blueprint.route("/signup", methods=["post"])
 def sign_up():
     if invalid_json():
         return invalid_json()
-    buffer = FrontController(User,request.get_json())
-    return buffer.post(ids,users)
+    buffer = FrontController(User, request.get_json())
+    return buffer.post(ids, users)
 
 
 @blueprint.route("/login", methods=["post"])
 def login():
     if invalid_json():
         return invalid_json()
-    buffer = LoginDirector(Login,request.get_json(),users)
+    buffer = LoginDirector(Login, request.get_json(), users)
     return buffer.login()
+
 
 @blueprint.route("/meetups/upcomings")
 def upcoming_meetups():
@@ -108,31 +104,19 @@ def upcoming_meetups():
     for m in meet_ups:
         if datetime.strptime(m["on"], '%b %d %Y') > datetime.now():
             events.append(m)
-    return jsonify({
-        "data": events,
-        "status": 200
-    })
+    return Display.custom_render(events, 200)
 
 
 def invalid_id(variable):
     try:
         n = int(variable)
     except:
-        return jsonify({
-            "status": 400,
-            "error": en_errors[60]
-        }), 400
+        return Display.error_display(60, 400)
     return 0
 
 
 def invalid_json():
     try:
         request.get_json()
-
     except:
-        return jsonify(
-            {"status": 400,
-             "error": en_errors[63]
-             }
-        ), 400
-    return 0
+        return Display.display_error(63, 400)

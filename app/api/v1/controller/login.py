@@ -2,10 +2,10 @@ from app.api.v1.controller.display import Display
 
 
 class Login:
-    def __init__(self, data,database):
+    def __init__(self, data, database):
         self.data = data
         self._database = database
-        self.logged_in=False
+        self.logged_in = False
 
     def new_display(self):
         self._display = Display()
@@ -21,6 +21,21 @@ class Login:
         return self
 
     def input_validate(self):
+        # keys=["username","email","password"]
+        # types=[str,str,str]
+        # key_errors=[222,222,419]
+        # values_errors=[420,420,420]
+        #
+        #
+        # for field in keys:
+        #     if not self.is_set(field):
+        #         return self.premature_return(key_errors[keys.index(field)])
+        #     if not self.type_check(field,types[keys.index(field)]):
+        #         return self.premature_return(values_errors[keys.index(field)])
+        # return self
+
+        if not isinstance(self.data, dict):
+            return self.premature_return(502)
         if not self.is_set("username"):
             if not self.is_set("email"):
                 return self.premature_return(222)
@@ -30,8 +45,6 @@ class Login:
             return self.premature_return(420)
         return self
 
-
-
     def is_set(self, key):
         return key in self.data.keys()
 
@@ -39,7 +52,7 @@ class Login:
         for user in self._database:
             if self.data["username"] == user["username"] and self.data["password"] == user["password"]:
                 self._display.data = user
-                self.logged_in=True
+                self.logged_in = True
         if self.logged_in == False:
             return self.premature_return(224)
         return self
@@ -52,4 +65,3 @@ class Login:
         if self.logged_in == False:
             return self.premature_return(224)
         return self
-

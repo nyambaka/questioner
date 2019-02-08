@@ -79,32 +79,3 @@ class User(AbsController):
             return self.premature_return(502)
         self.data["id"] = self.id_generator(ids, "user")
         return self
-
-# sampleuser={
-# 	"firstname":"nelson",
-# 	"lastname":"nyambaka",
-# 	"othername":"nyambaka",
-# 	"email":"nelsonnyambaka@gmail.com",
-# 	"phonenumber":"0700741837",
-# 	"username":"nelly",
-# 	"registered":"2018-01-20",
-# 	"isadmin":True
-# }
-
-# test=User(sampleuser)
-# result=test.selfValidate()
-# print(result)
-#         for i in users:
-#             sample = User(i)
-#             if sample.get_user_name() == tempUser.get_user_name():
-#                 return jsonify(
-#                     {
-#                         "error": en_errors[801]
-#                     }
-#                 ), 400
-#             if sample.get_email() == tempUser.get_email():
-#                 return jsonify(
-#                     {
-#                         "errror": en_errors[802]
-#                     }
-#                 ), 400

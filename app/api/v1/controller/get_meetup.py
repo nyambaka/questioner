@@ -11,7 +11,6 @@ class GetMeetup(AbstractGet):
         return self
 
     def get_with_id(self, id):
-        print(self.data)
         try:
             int(id)
         except:
