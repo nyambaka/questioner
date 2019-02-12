@@ -1,7 +1,6 @@
 import unittest
 from app import create_app
 import json
-from ..v1.utils.error_file import en_errors
 
 application = create_app()
 
@@ -42,6 +41,5 @@ class TestUserLogin(unittest.TestCase):
         response = self.app.post(self.url_prefix + "/login", headers={"Content-Type": "application/json"},
                                  data=json.dumps(self.data))
         result = json.loads(response.get_data().decode())
-        self.assertEqual(result["data"], "login was successful", "the correct message should be returned")
-        self.assertEqual(result["status"], 201, "the correct error message should be returned")
+        self.assertEqual(result["data"]["firstname"],"nelson","correct firstname should be returned")
         self.assertEqual(response.status_code, 201, "correct status code should be returned")
